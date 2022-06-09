@@ -1,23 +1,28 @@
+import org.junit.Before;
 import org.junit.Test;
 import praktikum.Bun;
+import praktikum.Database;
 
 import static org.junit.Assert.assertEquals;
 
 public class BunTest {
 
-    String name = "black bun";
-    float price = 100;
+    private final Database database = new Database();
+    private Bun bun;
+
+    @Before
+    public void init() {
+        bun = database.availableBuns().get(0);
+    }
 
     @Test
     public void getBunNameTest() {
-        Bun bun = new Bun(name, price);
         String expected = "black bun";
         assertEquals(expected, bun.getName());
     }
 
     @Test
     public void getBunPriceTest() {
-        Bun bun = new Bun(name, price);
         float expected = 100;
         assertEquals(expected, bun.getPrice(), 0);
     }
